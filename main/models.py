@@ -1,8 +1,10 @@
 
 from django.db import models
-
+from django.urls import reverse
 # Create your models here.
 class Hospital(models.Model):
+    photo = models.ImageField(upload_to='main',null=True, blank=True)
+
     name = models.CharField('Название',max_length=100) 
     REGION = [
         ('Osh', 'Ошская'),
@@ -52,6 +54,8 @@ class Nurses(models.Model):
     class Meta:
         verbose_name = 'Медсестра'
         verbose_name_plural = 'Медсестры'
+    def get_absolute_url(self):
+        return reverse('index')
 class Doctor(models.Model):
     POSITION=[
         ('therapist','Терапевт'),
@@ -69,6 +73,8 @@ class Doctor(models.Model):
     class Meta:
         verbose_name = 'Лечащий врач'
         verbose_name_plural = 'Лечащие врачи'
+    def get_absolute_url(self):
+        return reverse('index')
 class Patient(models.Model):
     name = models.CharField('ФИО ' ,max_length=255)
     pin = models.CharField('ПИН', max_length=4)
@@ -83,3 +89,5 @@ class Patient(models.Model):
     class Meta:
         verbose_name = 'Пациент'
         verbose_name_plural = 'Пациенты'
+    def get_absolute_url(self):
+        return reverse('index')

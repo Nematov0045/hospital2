@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}добавить доктора{% endblock %}
+{% block content %}
+<div class="container">
+<form method="POST" class="mt-5">
+    <div class="form-group">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-primary"type="submit">сохранить</button>
+    </div>
+</form>
+</div>
+{% endblock %}
