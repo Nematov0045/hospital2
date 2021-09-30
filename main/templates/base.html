@@ -9,7 +9,7 @@
 </head>
 <body>
     
-    <header>
+    <!-- <header>
       <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
           <div class="row">
@@ -41,9 +41,31 @@
           </button>
         </div>
       </div>
-    </header>
-    
-    {% block content %} {% endblock %}
+    </header> -->
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="{% url 'index' %}" class="nav-link px-2 text-secondary">Главное</a></li>
+        <li><a href="#hospitals" class="nav-link px-2 text-secondary">БОЛЬНИЦА</a></li>
+       
+      </ul>
+      {% if request.user.is_authenticated %}
+      <form method="GET" action="{% url 'signout' %}" class="text-end">
+        <button type="submit" class="btn btn-warning">выход</button>
+      </form>
+      {% else %}
+      <form method="GET" action="{% url 'signin' %}" class="text-end">
+        <button type="submit" class="btn btn-warning">вход</button>
+      </form>
+      <form method="GET" action="{% url 'register' %}" class="text-end"> 
+        <button type="submit" class="btn btn-primary">зарегистрироваться</button>
+      </form>
+      {% endif %}
+    </div>
+      {% block content %} {% endblock %}
     
     <footer class="text-muted py-5">
       <div class="container">
